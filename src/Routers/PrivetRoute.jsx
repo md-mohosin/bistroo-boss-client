@@ -1,10 +1,12 @@
 import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProviders";
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import loader from '../assets/others/loader3.gif'
 
 const PrivetRoute = ({ children }) => {
     const { user, loading } = useContext(AuthContext)
+    const location = useLocation()
+
 
     if (loading) {
         return <div className="flex justify-center items-center min-h-screen">
@@ -16,7 +18,7 @@ const PrivetRoute = ({ children }) => {
         return children
     }
     return (
-        <Navigate to='/login'></Navigate>
+        <Navigate to='/login' state={{from:location}}></Navigate>
     );
 };
 

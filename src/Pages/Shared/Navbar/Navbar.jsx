@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProviders";
 import profileImage from '../../../assets/others/profile.png'
+import { FaShoppingCart } from "react-icons/fa";
 
 const Navbar = () => {
 
@@ -17,7 +18,11 @@ const Navbar = () => {
             <NavLink to={'/contactUs'}><a>CONTACT US</a></NavLink>
             <NavLink to={'/'}><a>DASHBOARD</a></NavLink>
             <NavLink to={'/menu'}><a>OUR MENU</a></NavLink>
-            <NavLink to={'/ourShop/salad'}><a>OUR SHOP</a></NavLink>
+            <button>
+                <NavLink to={'/ourShop/salad'}><a className="flex items-center gap-1">OUR SHOP<FaShoppingCart size={17}></FaShoppingCart></a></NavLink>
+                <div className="badge badge-secondary">+0</div>
+            </button>
+
             {
                 user ?
                     <button onClick={handleLogOut} className="btn btn-xs">Logout</button>
@@ -65,8 +70,7 @@ const Navbar = () => {
                 <div className="mr-0">
                     {
                         user ?
-                           <> <img className="w-14 h-14 rounded-full bg-black" src={user.photoURL} alt="" />
-                            <h1>{user.name}</h1>
+                            <> <img className="w-14 h-14 rounded-full bg-black" src={user.photoURL} alt="" />
                             </>
                             :
                             <img className="w-12 rounded-full" src={profileImage} alt="" />
