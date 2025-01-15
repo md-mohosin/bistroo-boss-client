@@ -1,16 +1,29 @@
-import { FaRegUser } from "react-icons/fa";
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { AuthContext } from "../../../providers/AuthProviders";
+import profileImage from '../../../assets/others/profile.png'
 
 const Navbar = () => {
+
+    const { user, logOut } = useContext(AuthContext)
+
+    const handleLogOut = () => {
+        logOut()
+    }
 
     const navOptions = <>
         <div className="flex gap-3 font-semibold text-white">
             <NavLink to={'/'}><a>HOME</a></NavLink>
-            <NavLink to={'/'}><a>CONTACT US</a></NavLink>
+            <NavLink to={'/contactUs'}><a>CONTACT US</a></NavLink>
             <NavLink to={'/'}><a>DASHBOARD</a></NavLink>
             <NavLink to={'/menu'}><a>OUR MENU</a></NavLink>
             <NavLink to={'/ourShop/salad'}><a>OUR SHOP</a></NavLink>
-            <NavLink to={'/login'}><a className="flex items-center gap-1">SIGN IN<FaRegUser></FaRegUser></a></NavLink>
+            {
+                user ?
+                    <button onClick={handleLogOut} className="btn btn-xs">Logout</button>
+                    :
+                    <NavLink to={'/login'}><a className="flex items-center gap-1">SIGN IN</a></NavLink>
+            }
         </div>
     </>
 
@@ -44,10 +57,20 @@ const Navbar = () => {
                         <h1>R E S T A U R A N T</h1>
                     </div>
                 </div>
-                <div className="">
-                    <div className=" hidden lg:flex">
+                <div>
+                    <div className=" hidden lg:flex items-center">
                         {navOptions}
                     </div>
+                </div>
+                <div className="mr-0">
+                    {
+                        user ?
+                           <> <img className="w-14 h-14 rounded-full bg-black" src={user.photoURL} alt="" />
+                            <h1>{user.name}</h1>
+                            </>
+                            :
+                            <img className="w-12 rounded-full" src={profileImage} alt="" />
+                    }
                 </div>
             </div>
         </div>
