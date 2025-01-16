@@ -1,17 +1,18 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import Swal from "sweetalert2";
-import axios from "axios";
-import { Bounce, toast,} from "react-toastify";
+import { Bounce, toast, } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useCart from "../../../hooks/useCart";
 
 
 const ShopCategory = ({ item }) => {
 
-    const { _id, name, recipe, image, price } = item
+    const { _id, name, image, price } = item
 
     const { user } = useAuth()
+    const [, refetch] = useCart()
 
     const navigate = useNavigate()
     const location = useLocation()
@@ -19,6 +20,8 @@ const ShopCategory = ({ item }) => {
 
     const handleAddToCart = food => {
         if (user && user.email) {
+
+            // SEND CART DATA TO DATABASE
             const cartItem = {
                 productId: _id,
                 email: user.email,
@@ -42,6 +45,7 @@ const ShopCategory = ({ item }) => {
                             theme: "light",
                             transition: Bounce,
                         });
+                        refetch()
                     }
                 })
         }

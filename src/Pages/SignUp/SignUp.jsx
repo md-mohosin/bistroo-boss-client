@@ -80,9 +80,7 @@ const SignUp = () => {
                                     <span className="label-text">Password</span>
                                 </label>
                                 <input type="password" {...register("password", { required: true, pattern: /^[A-Za-z]+$/i, minLength: 6, maxLength: 20 },)} placeholder="Type here" className="input input-bordered" name='password' />
-                                <label className="label">
-                                    <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
-                                </label>
+                            
                                 {errors.password && <span className='text-red-600 font-semibold'>This field is required</span>}
                             </div>
 
