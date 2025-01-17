@@ -18,12 +18,10 @@ const Navbar = () => {
         <div className="flex gap-3 font-semibold text-white">
             <NavLink to={'/'}><a>HOME</a></NavLink>
             <NavLink to={'/contactUs'}><a>CONTACT US</a></NavLink>
-            <NavLink to={'/'}><a>DASHBOARD</a></NavLink>
-            <NavLink to={'/menu'}><a>OUR MENU</a></NavLink>
-            <button>
+            <NavLink to={'/dashboard'}><a>DASHBOARD</a></NavLink>
+            <NavLink to={'/menu'}><a>OUR MENU</a></NavLink>           
                 <NavLink to={'/ourShop/salad'}><a className="flex items-center gap-1">OUR SHOP<FaShoppingCart size={17}></FaShoppingCart></a></NavLink>
-                <div className="badge badge-secondary">+{cart.length}</div>
-            </button>
+                <NavLink to='/dashboard/cart' className="badge badge-secondary">+{cart.length}</NavLink>
 
             {
                 user ?
@@ -37,7 +35,7 @@ const Navbar = () => {
     return (
         <div className="fixed z-10 bg-opacity-30 bg-black mr-0 w-full px-8">
             <div className="flex justify-between items-center w-full">
-                <div className="navbar-start">
+                <div className="navbar-start w-5/12">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
                             <svg
@@ -65,7 +63,7 @@ const Navbar = () => {
                     </div>
                 </div>
                 <div>
-                    <div className=" hidden lg:flex items-center">
+                    <div className="hidden lg:flex items-center">
                         {navOptions}
                     </div>
                 </div>
