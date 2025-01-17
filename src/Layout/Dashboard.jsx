@@ -8,7 +8,7 @@ import { GiShoppingBag } from "react-icons/gi";
 const Dashboard = () => {
     return (
         <div className="flex">
-            <div className='w-auto space-y-3 border p-4 border-blue-600 bg-[#D1A054] min-h-screen'>
+            <div className='w-2/12 space-y-3 border p-4 border-blue-600 bg-[#D1A054] min-h-screen fixed top-0 left-0'>
                 <div>
                     <h1 className="text-xl font-bold">BISTO BOSS</h1>
                     <h1 className="w-full">RESTAURANT</h1>
@@ -94,11 +94,9 @@ const Dashboard = () => {
 
 
 
-
-
                 </ul>
             </div>
-            <div className="flex-1">
+            <div className="flex-1 pl-36">
                 <Outlet></Outlet>
             </div>
         </div>
