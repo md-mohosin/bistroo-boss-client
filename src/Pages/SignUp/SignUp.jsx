@@ -6,11 +6,15 @@ import { useForm } from 'react-hook-form';
 import { Helmet } from 'react-helmet';
 import { useContext } from 'react';
 import { AuthContext } from '../../providers/AuthProviders';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
+import SocialLogin from '../../components/socialLogin/SocialLogin';
 
 
 const SignUp = () => {
 
     const { createUser, updetUser } = useContext(AuthContext)
+
+    const axiosPublic = useAxiosPublic()
 
 
     const { register, handleSubmit, formState: { errors } } = useForm()
@@ -23,6 +27,18 @@ const SignUp = () => {
                 const loggdUser = result.user
                 console.log(loggdUser);
                 updetUser(data.name, data.photoURL)
+
+
+                // SAVE USER DATA
+                const userInfo = {
+                    name: data.name,
+                    email: data.email,
+                    photo: data.photoURL
+                }
+
+                axiosPublic.post('/users', userInfo)
+
+
             })
 
     }
@@ -80,7 +96,7 @@ const SignUp = () => {
                                     <span className="label-text">Password</span>
                                 </label>
                                 <input type="password" {...register("password", { required: true, pattern: /^[A-Za-z]+$/i, minLength: 6, maxLength: 20 },)} placeholder="Type here" className="input input-bordered" name='password' />
-                            
+
                                 {errors.password && <span className='text-red-600 font-semibold'>This field is required</span>}
                             </div>
 
@@ -89,6 +105,14 @@ const SignUp = () => {
                             <div className="form-control mt-6">
                                 <input className='btn btn-primary bg-[#DBB884]' type="submit" name="" id="" value={'Sign Up'} />
                             </div>
+
+
+                            <h1 className='text-center'>Or sign in with</h1>
+                            <div className='flex justify-center'>
+                                <SocialLogin></SocialLogin>
+                            </div>
+
+
                         </form>
                         <h1 className='text-[#ea9f2f] font-semibold'>Already have an account? <Link to={'/login'}>Go to login</Link></h1>
                     </div>

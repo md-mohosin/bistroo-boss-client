@@ -8,7 +8,6 @@ import Shop from "../Pages/OurShop/Shop/Shop";
 import Login from "../Pages/Login/Login";
 import Contact from "../Pages/ContactUs/Contact/Contact";
 import SignUp from "../Pages/SignUp/SignUp";
-import PrivetRoute from "./PrivetRoute";
 import Dashboard from "../Layout/Dashboard";
 import Cart from "../Pages/Dashboard/Cart/Cart";
 
