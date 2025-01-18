@@ -1,11 +1,16 @@
 import { NavLink, Outlet } from "react-router-dom";
 import '../Layout/Dashboard.css'
-import { FaCalendarAlt, FaHome, FaShoppingCart } from "react-icons/fa";
+import { FaCalendarAlt, FaHome, FaShoppingCart, FaUsers } from "react-icons/fa";
 import { MdAddBusiness, MdOutlineContactPhone, MdPayment, MdRateReview } from "react-icons/md";
 import { IoMdMenu } from "react-icons/io";
-import { GiShoppingBag } from "react-icons/gi";
+import { GiForkKnifeSpoon, GiShoppingBag } from "react-icons/gi";
+import { TfiMenuAlt } from "react-icons/tfi";
+import { TiBook } from "react-icons/ti";
 
 const Dashboard = () => {
+
+    const isAdmin = true
+
     return (
         <div className="flex">
             <div className='w-2/12 space-y-3 border p-4 border-blue-600 bg-[#D1A054] min-h-screen fixed top-0 left-0'>
@@ -15,47 +20,98 @@ const Dashboard = () => {
                 </div>
                 <ul className="text-black space-y-3 pt-10 font-semibold">
 
-                    {/* USER HOME */}
-                    <li><NavLink className={'flex items-center gap-1'} to='/dashboard/userHome'>
-                        <FaHome></FaHome>
-                        USER HOME
-                    </NavLink></li>
 
-                    {/* RESERVATION */}
-                    <li><NavLink className={'flex items-center gap-1'} to='/dashboard/reservation'>
-                        <FaCalendarAlt></FaCalendarAlt>
-                        RESERVATION
-                    </NavLink></li>
-
-                    {/* PAYMENT HISTORY*/}
-                    <li><NavLink className={'flex items-center gap-1'} to='/dashboard/paymentHistory'>
-                        <MdPayment></MdPayment>
-                        PAYEMNT HISTORY
-                    </NavLink></li>
+                    {
+                        isAdmin ? <div className="space-y-3">
 
 
-                    {/* MY CART */}
-                    <li><NavLink className={'flex items-center gap-1'} to='/dashboard/cart'>
-                        <FaShoppingCart></FaShoppingCart>
-                        MY CART
-                    </NavLink></li>
+                            {/* ADIMN */}
+
+                            {/* ADMIN HOME */}
+                            <li><NavLink className={'flex items-center gap-1'} to='/dashboard/adminHome'>
+                                <FaHome></FaHome>
+                                ADMIN HOME
+                            </NavLink></li>
+
+                            {/* ADD ITEMS */}
+                            <li><NavLink className={'flex items-center gap-1'} to='/dashboard/addItems'>
+                                <GiForkKnifeSpoon></GiForkKnifeSpoon>
+                                ADD ITEMS
+                            </NavLink></li>
+
+                            {/* MANAGE ITEMS*/}
+                            <li><NavLink className={'flex items-center gap-1'} to='/dashboard/manageItems'>
+                                <TfiMenuAlt></TfiMenuAlt>
+                                MANAGE ITEMS
+                            </NavLink></li>
 
 
-                    {/* ADD REVIEW */}
-                    <li><NavLink className={'flex items-center gap-1'} to='/dashboard/addReview'>
-                        <MdRateReview></MdRateReview>
-                        ADD REVIEW
-                    </NavLink></li>
+                            {/* MANAGE BOOKING*/}
+                            <li><NavLink className={'flex items-center gap-1'} to='/dashboard/booking'>
+                                <TiBook></TiBook>
+                                MANAGE BOOKING
+                            </NavLink></li>
 
 
-                     {/* MY BOOKING*/}
-                     <li><NavLink className={'flex items-center gap-1'} to='/dashboard/myBooking'>
-                        <MdAddBusiness></MdAddBusiness>
-                        MY BOOKING
-                    </NavLink></li>
+                            {/* ALL USERS */}
+                            <li><NavLink className={'flex items-center gap-1'} to='/dashboard/allUsers'>
+                                <FaUsers></FaUsers>
+                                ALL USERS
+                            </NavLink></li>
 
 
 
+                        </div>
+                            :
+
+                            // USER
+                            <div className="space-y-3">
+
+                                {/* USER HOME */}
+                                <li><NavLink className={'flex items-center gap-1'} to='/dashboard/userHome'>
+                                    <FaHome></FaHome>
+                                    USER HOME
+                                </NavLink></li>
+
+                                {/* RESERVATION */}
+                                <li><NavLink className={'flex items-center gap-1'} to='/dashboard/reservation'>
+                                    <FaCalendarAlt></FaCalendarAlt>
+                                    RESERVATION
+                                </NavLink></li>
+
+                                {/* PAYMENT HISTORY*/}
+                                <li><NavLink className={'flex items-center gap-1'} to='/dashboard/paymentHistory'>
+                                    <MdPayment></MdPayment>
+                                    PAYEMNT HISTORY
+                                </NavLink></li>
+
+
+                                {/* MY CART */}
+                                <li><NavLink className={'flex items-center gap-1'} to='/dashboard/cart'>
+                                    <FaShoppingCart></FaShoppingCart>
+                                    MY CART
+                                </NavLink></li>
+
+
+                                {/* ADD REVIEW */}
+                                <li><NavLink className={'flex items-center gap-1'} to='/dashboard/addReview'>
+                                    <MdRateReview></MdRateReview>
+                                    ADD REVIEW
+                                </NavLink></li>
+
+
+                                {/* MY BOOKING*/}
+                                <li><NavLink className={'flex items-center gap-1'} to='/dashboard/myBooking'>
+                                    <MdAddBusiness></MdAddBusiness>
+                                    MY BOOKING
+                                </NavLink></li>
+
+
+
+                            </div>
+                    }
+
+                    {/* shared nav link */}
 
                     {/* WHITE BOARDER */}
                     <div className="py-4">
@@ -81,7 +137,7 @@ const Dashboard = () => {
 
                     {/* SHOP */}
                     <li><NavLink className={'flex items-center gap-1'} to='/'>
-                    <GiShoppingBag></GiShoppingBag>
+                        <GiShoppingBag></GiShoppingBag>
                         SHOP
                     </NavLink></li>
 
@@ -91,8 +147,6 @@ const Dashboard = () => {
                         <MdOutlineContactPhone></MdOutlineContactPhone>
                         CONTACT
                     </NavLink></li>
-
-
 
                 </ul>
             </div>

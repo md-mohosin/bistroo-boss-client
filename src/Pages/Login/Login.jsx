@@ -7,12 +7,13 @@ import { AuthContext } from '../../providers/AuthProviders';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
 import { Helmet } from 'react-helmet';
+import SocialLogin from '../../components/socialLogin/SocialLogin';
 
 const Login = () => {
 
     const navigate = useNavigate()
     const location = useLocation()
-     const from = location.state?.from?.pathname || ('/')
+    const from = location.state?.from?.pathname || ('/')
 
 
     const { loginUser } = useContext(AuthContext)
@@ -47,7 +48,7 @@ const Login = () => {
         loginUser(email, password)
             .then((result) => {
                 console.log(result.user);
-                navigate(from,{replace:true})
+                navigate(from, { replace: true })
             })
             .catch((error) => {
                 console.log(error);
@@ -94,6 +95,14 @@ const Login = () => {
                             <div className="form-control mt-6">
                                 <input disabled={disable} className='btn btn-primary bg-[#DBB884]' type="submit" name="" id="" value={'login'} />
                             </div>
+
+
+                            <h1 className='text-center'>Or sign in with</h1>
+                            <div className='flex justify-center'>
+                                <SocialLogin></SocialLogin>
+                            </div>
+
+
                         </form>
                         <h1 className='text-[#ea9f2f] font-semibold'>New here? <Link to={'/signUp'}>Create a New Account</Link></h1>
                     </div>
