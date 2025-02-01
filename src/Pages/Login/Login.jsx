@@ -8,6 +8,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
 import { Helmet } from 'react-helmet';
 import SocialLogin from '../../components/socialLogin/SocialLogin';
+import LoadingSpiner from '../Shared/LoadingSpiner/LoadingSpiner';
 
 const Login = () => {
 
@@ -16,7 +17,7 @@ const Login = () => {
     const from = location.state?.from?.pathname || ('/')
 
 
-    const { loginUser } = useContext(AuthContext)
+    const { loginUser,loading } = useContext(AuthContext)
 
     const [disable, setDisable] = useState(true)
 
@@ -53,6 +54,10 @@ const Login = () => {
             .catch((error) => {
                 console.log(error);
             })
+    }
+
+    if(loading){
+        return <LoadingSpiner></LoadingSpiner>
     }
 
     return (

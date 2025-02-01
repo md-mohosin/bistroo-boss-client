@@ -6,10 +6,17 @@ import { IoMdMenu } from "react-icons/io";
 import { GiForkKnifeSpoon, GiShoppingBag } from "react-icons/gi";
 import { TfiMenuAlt } from "react-icons/tfi";
 import { TiBook } from "react-icons/ti";
+import useAdmin from "../hooks/useAdmin";
+import useAuth from "../hooks/useAuth";
+import LoadingSpiner from "../Pages/Shared/LoadingSpiner/LoadingSpiner";
 
 const Dashboard = () => {
 
-    const isAdmin = true
+    const [isAdmin] = useAdmin()
+    const {loading} = useAuth()
+    if(loading){
+        return <LoadingSpiner></LoadingSpiner>
+    }
 
     return (
         <div className="flex">

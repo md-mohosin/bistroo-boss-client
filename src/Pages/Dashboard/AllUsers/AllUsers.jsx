@@ -4,6 +4,8 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { RiDeleteBin2Fill } from "react-icons/ri";
 import { FaUsers } from "react-icons/fa";
 import Swal from "sweetalert2";
+import { GrUserAdmin } from "react-icons/gr";
+import { Helmet } from "react-helmet-async";
 
 const AllUsers = () => {
 
@@ -12,7 +14,11 @@ const AllUsers = () => {
     const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await axiosSecure.get('/users')
+            const res = await axiosSecure.get('/users', {
+                headers: {
+                    authorization: `Bearer ${localStorage.getItem('access-token')}`
+                }
+            })
             return res.data
         },
 
@@ -68,6 +74,9 @@ const AllUsers = () => {
 
     return (
         <div className="pl-32">
+            <Helmet>
+                <title>Bistroo Boss || All Users</title>
+            </Helmet>
             <SectionTitle subHeading={'---Hoy many---'} heading={'manage users'}></SectionTitle>
             <div className="w-11/12 mx-auto">
                 <h1 className="uppercase font-bold">Total Users : {users.length}</h1>
@@ -96,7 +105,12 @@ const AllUsers = () => {
                                             {
                                                 item.role === 'admin'
                                                     ?
-                                                    'Admin'
+                                                    <button
+                                                        className="btn bg-[#CC9C52]">
+                                                        <GrUserAdmin
+                                                            size={20}>
+                                                        </GrUserAdmin>
+                                                    </button>
                                                     :
                                                     <button
                                                         onClick={() => handleMakeAdmin(item._id)}

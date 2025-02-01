@@ -11,10 +11,16 @@ import SignUp from "../Pages/SignUp/SignUp";
 import Dashboard from "../Layout/Dashboard";
 import Cart from "../Pages/Dashboard/Cart/Cart";
 import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
+import AddItems from "../Pages/Dashboard/AddItems/AddItems";
+import AdminRoute from "./AdminRoute";
+import ErrorPage from "../Pages/Error/ErrorPage";
+import ManageItems from "../Pages/Dashboard/ManageItems/ManageItems";
+import PrivetRoute from "./PrivetRoute";
 
 export const router = createBrowserRouter([
   {
     path: "/",
+    errorElement: <ErrorPage></ErrorPage>,
     element: <Main></Main>,
     children: [
       {
@@ -46,7 +52,7 @@ export const router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: <Dashboard></Dashboard>,
+    element: <PrivetRoute><Dashboard></Dashboard></PrivetRoute>,
     children: [
       {
         path: "cart",
@@ -57,6 +63,14 @@ export const router = createBrowserRouter([
       {
         path: "allUsers",
         element: <AllUsers></AllUsers>
+      },
+      {
+        path: "addItems",
+        element: <AdminRoute><AddItems></AddItems></AdminRoute>
+      },
+      {
+        path: "manageItems",
+        element: <AdminRoute><ManageItems></ManageItems></AdminRoute>
       }
     ]
   }
